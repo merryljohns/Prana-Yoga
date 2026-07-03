@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join our live transformative online Yoga Classes and Webinars. Connect mind and body, learn breathing alignment, and melt stress away.">
+    <title>Yoga Fundamentals & Flow - Live Webinar Landing Page</title>
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS Styling -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home" id="nav-logo">
+                <!-- Custom Yoga Flower SVG Icon -->
+                <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C11.5 4 9 7 9 10C9 13.5 12 16 12 16C12 16 15 13.5 15 10C15 7 12.5 4 12 2Z" />
+                    <path d="M12 16C12 16 9.5 14.5 7 13.5C4.5 12.5 2 12.5 2 13C2 13.5 4.5 15 7 16.5C9.5 18 12 19 12 19C12 19 14.5 18 17 16.5C19.5 15 22 13.5 22 13C22 12.5 19.5 12.5 17 13.5C14.5 14.5 12 16 12 16Z" opacity="0.8"/>
+                    <path d="M12 16C12 16 10.5 17.5 8 18.5C5.5 19.5 3 20.5 3.5 21C4 21.5 6.5 21 9 19.5C11.5 18 12 16.5 12 16Z" opacity="0.6"/>
+                    <path d="M12 16C12 16 12 18.5 15 19.5C18 20.5 20.5 21.5 21 21C21.5 20.5 18.5 19.5 16 18.5C13.5 17.5 12 16 12 16Z" opacity="0.6"/>
+                </svg>
+                <span>PranaYoga</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" id="nav-link-home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" id="nav-link-about">Why Join</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#video" id="nav-link-video">Preview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#classes" id="nav-link-classes">Webinars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials" id="nav-link-testimonials">Reviews</a>
+                    </li>
+                </ul>
+                <a href="#registration-section" class="btn btn-premium btn-sm ms-lg-3" id="nav-cta-btn">Book Webinar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-slider-container" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text Column -->
+                <div class="col-lg-6 pr-lg-5" data-aos="fade-up">
+                    <span class="section-badge">Live Interactive Masterclasses</span>
+                    <h1 class="display-4 mb-3" style="font-weight: 800; line-height: 1.2;">
+                        Awaken Your Body, Calm Your Mind.
+                    </h1>
+                    <p class="lead text-muted mb-4">
+                        Discover the life-changing benefits of structured breathing, alignment, and movement. Join our expert-led yoga webinars designed for every level.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check-fill text-success fs-5"></i>
+                            <span class="small text-dark font-weight-bold">Certified Coaches</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check-fill text-success fs-5"></i>
+                            <span class="small text-dark font-weight-bold">Live Q&A Sessions</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check-fill text-success fs-5"></i>
+                            <span class="small text-dark font-weight-bold">Resource E-Book Included</span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#classes" class="btn btn-premium py-3 px-4" id="hero-primary-btn">Explore Webinars</a>
+                        <a href="#video" class="btn btn-outline-secondary py-3 px-4" id="hero-secondary-btn" style="border-radius: 12px;"><i class="bi bi-play-circle-fill me-2 text-primary"></i>Watch Trailer</a>
+                    </div>
+                </div>
+                
+                <!-- Dynamic Banner Slider Column -->
+                <div class="col-lg-6 mt-5 mt-lg-0 text-center">
+                    <div id="heroBannerContainer" class="hero-slider-inner">
+                        <div class="api-loader">
+                            <div class="spinner-custom"></div>
+                            <span class="text-muted small">Loading gorgeous banner...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Why Join / Benefits Section -->
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="row justify-content-center text-center section-title-wrapper">
+                <div class="col-lg-8">
+                    <span class="section-badge">Elevate Your Lifestyle</span>
+                    <h2 class="section-title">Why Join Our Yoga Workshops?</h2>
+                    <p class="text-muted">
+                        Our structured live sessions combine physical postures (Asanas) with breathwork (Pranayama) and meditation to provide holistic wellness.
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <!-- Benefit Item 1 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-stars"></i>
+                        </div>
+                        <h5>Stress Reduction</h5>
+                        <p class="text-muted small mb-0">
+                            Learn scientifically backed breathing techniques designed to activate the parasympathetic nervous system, lowering heart rate and work-related anxiety.
+                        </p>
+                    </div>
+                </div>
+                <!-- Benefit Item 2 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h5>Alignment & Flexibility</h5>
+                        <p class="text-muted small mb-0">
+                            Receive real-time expert correction on core yoga postures to improve spinal alignment, joint mobility, and release muscle tightness.
+                        </p>
+                    </div>
+                </div>
+                <!-- Benefit Item 3 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h5>Vitality & Focus</h5>
+                        <p class="text-muted small mb-0">
+                            Harness your vital prana energy. Cultivate mental clarity, emotional equilibrium, and a sharp boost in daily cognitive focus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Preview Section -->
+    <section class="section-padding bg-light" id="video">
+        <div class="container">
+            <div class="row justify-content-center text-center section-title-wrapper">
+                <div class="col-lg-8">
+                    <span class="section-badge">Webinar Preview</span>
+                    <h2 class="section-title">Experience the Yoga Webinar</h2>
+                    <p class="text-muted">
+                        Watch this short 2-minute overview of what you will experience, the sequence structure, and the peaceful environment of our classes.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <!-- Loaded dynamically from API inside this container -->
+                    <div id="webinarVideoContainer">
+                        <div class="api-loader">
+                            <div class="spinner-custom"></div>
+                            <span class="text-muted small">Loading trailer preview...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yoga Class Listing Section -->
+    <section class="section-padding" id="classes">
+        <div class="container">
+            <div class="row justify-content-center text-center section-title-wrapper">
+                <div class="col-lg-8">
+                    <span class="section-badge">Choose Your Practice</span>
+                    <h2 class="section-title">Available Live Classes</h2>
+                    <p class="text-muted">
+                        Find the ideal class style tailored for you. Each booking gives you live webinar stream access, digital resource worksheets, and session recordings.
+                    </p>
+                </div>
+            </div>
+            <!-- Class cards dynamically injected here -->
+            <div class="row" id="classListingContainer">
+                <div class="api-loader">
+                    <div class="spinner-custom"></div>
+                    <span class="text-muted small">Loading active workshops...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding bg-light" id="testimonials">
+        <div class="container">
+            <div class="row justify-content-center text-center section-title-wrapper">
+                <div class="col-lg-8">
+                    <span class="section-badge">Client Transformations</span>
+                    <h2 class="section-title">What Our Students Say</h2>
+                    <p class="text-muted">
+                        Read inspiring experiences from individuals who restored their flexibility, focus, and peace of mind with our classes.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Slides injected dynamically -->
+                    <div id="testimonialSliderContainer">
+                        <div class="api-loader">
+                            <div class="spinner-custom"></div>
+                            <span class="text-muted small">Loading authentic reviews...</span>
+                        </div>
+                    </div>
+                    <!-- Navigation Dots -->
+                    <div id="testimonialDotsContainer" class="testimonial-dots"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration / Payment Form Section -->
+    <section class="section-padding" id="registration-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Info Panel -->
+                <div class="col-lg-6 pe-lg-5 mb-5 mb-lg-0">
+                    <span class="section-badge">Instant Enrollment</span>
+                    <h2 class="section-title mb-4">Secure Your Webinar Seat</h2>
+                    <p class="text-muted mb-4">
+                        Enroll in your preferred yoga webinar today. Enter your basic details and select your class. Once completed, your webinar streaming details and resource links will be immediately delivered to your inbox.
+                    </p>
+                    
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <div class="fs-4 text-primary mt-1">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <div>
+                            <h6>Lifetime Access to Recording</h6>
+                            <p class="text-muted small mb-0">Can't make it to the live stream? You'll receive full session replay access for 6 months.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <div class="fs-4 text-primary mt-1">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <div>
+                            <h6>Yoga & Breath Guidebook</h6>
+                            <p class="text-muted small mb-0">Get our comprehensive PDF guidebook breaking down alignment tips and healthy routine builders.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="fs-4 text-primary mt-1">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <div>
+                            <h6>Secure Integration & Fallbacks</h6>
+                            <p class="text-muted small mb-0">Your registration is securely saved in Firebase database storage with local offline backups.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Form Panel -->
+                <div class="col-lg-6">
+                    <div class="registration-box">
+                        <div class="registration-header">
+                            <h3>Register Online</h3>
+                            <p class="small mb-0 text-white-50">Fast, secure checkout & instant setup</p>
+                        </div>
+                        <div class="registration-body">
+                            <form id="webinarRegisterForm" novalidate>
+                                
+                                <div class="mb-3">
+                                    <label for="regName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="regName" placeholder="Enter your full name" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="regEmail" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="regEmail" placeholder="name@domain.com" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="regPhone" class="form-label">Phone Number (10 digits)</label>
+                                    <input type="tel" class="form-control" id="regPhone" placeholder="9876543210" required>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="regClassSelect" class="form-label">Select Yoga Class</label>
+                                    <select class="form-select" id="regClassSelect" required>
+                                        <option value="" disabled selected>Loading active classes...</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-accent w-100 py-3 text-uppercase" id="regSubmitBtn">
+                                    Complete Free Registration <i class="bi bi-wallet2 ms-2"></i>
+                                </button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                            <path d="M12 2C11.5 4 9 7 9 10C9 13.5 12 16 12 16C12 16 15 13.5 15 10C15 7 12.5 4 12 2Z" />
+                            <path d="M12 16C12 16 9.5 14.5 7 13.5C4.5 12.5 2 12.5 2 13C2 13.5 4.5 15 7 16.5C9.5 18 12 19 12 19C12 19 14.5 18 17 16.5C19.5 15 22 13.5 22 13C22 12.5 19.5 12.5 17 13.5C14.5 14.5 12 16 12 16Z" opacity="0.8"/>
+                        </svg>
+                        <h5 class="text-white mb-0 font-weight-bold">PranaYoga</h5>
+                    </div>
+                    <p class="small text-white-50">
+                        Empowering individuals globally through professional-grade yoga, meditation training, and alignment programs delivered live to your home.
+                    </p>
+                    <div class="d-flex gap-2 mt-4">
+                        <a href="#" class="footer-social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="footer-social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="footer-social-icon" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="footer-social-icon" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#home">Home</a></li>
+                        <li class="mb-2"><a href="#about">Why Join</a></li>
+                        <li class="mb-2"><a href="#video">Preview</a></li>
+                        <li class="mb-2"><a href="#classes">Active Classes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5>Contact Us</h5>
+                    <p class="small text-white-50 mb-2">
+                        <i class="bi bi-envelope-fill me-2"></i> info@pranayoga.com
+                    </p>
+                    <p class="small text-white-50 mb-2">
+                        <i class="bi bi-telephone-fill me-2"></i> +1 (800) 555-YOGA
+                    </p>
+                    <p class="small text-white-50">
+                        <i class="bi bi-geo-alt-fill me-2"></i> 108 Mindfulness Way, Sanctuary City, CA
+                    </p>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5>Newsletter</h5>
+                    <p class="small text-white-50 mb-3">Subscribe to get free mini-guides and webinar schedules weekly.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control form-control-sm" placeholder="Email address" style="border-radius: 8px 0 0 8px;">
+                        <button class="btn btn-accent btn-sm" type="button" style="border-radius: 0 8px 8px 0;"><i class="bi bi-send"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row footer-bottom">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="small text-white-50 mb-0">&copy; 2026 PranaYoga. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="small text-white-50 me-3">Privacy Policy</a>
+                    <a href="#" class="small text-white-50">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle with Popper JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Firebase Compat SDK (Needed for client template initialization) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom API and Application scripts -->
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/firebase.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
