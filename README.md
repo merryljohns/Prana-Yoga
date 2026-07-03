@@ -105,3 +105,28 @@ live-server
 - **Glassmorphic Navigation:** Blurry transparent navigation bar that locks to the top.
 - **Micro-animations:** Hover transitions on buttons, interactive card elevation, and smooth carousel transitions.
 - **Responsive Embeds:** Responsive 16:9 YouTube wrapper for clean viewing on mobile, tablet, and desktop viewports.
+
+---
+
+## ⚙️ Step-by-Step Firebase Project Setup Guide
+
+If you do not have a Firebase project yet, follow this guide to create one for free:
+
+### 1. Create a Firebase Project
+1. Open the [Firebase Console](https://console.firebase.google.com/) and sign in with your Google account.
+2. Click **Add project** (or **Create a project**).
+3. Name your project (e.g. `Yoga-Webinar`) and click **Continue**.
+4. Disable Google Analytics (optional, makes database setup quicker) and click **Create project**. Wait for the setup to complete, then click **Continue**.
+
+### 2. Register Your Web App
+1. In the center of the project overview page, click the **Web icon (`</>`)** to register a web application.
+2. Give your web app a nickname (e.g. `Yoga Web App`) and click **Register app**.
+3. Under the configuration snippet shown, copy the config object keys inside the `const firebaseConfig = { ... };` block.
+4. Open the [assets/js/firebase.js](file:///C:/Users/merry/.gemini/antigravity/scratch/Yoga-Webinar-Template/assets/js/firebase.js) file and replace the values inside the config object with your copied keys.
+
+### 3. Initialize Firestore Database
+1. In the left menu of the Firebase Console, go to **Build** -> **Firestore Database**.
+2. Click **Create database**.
+3. Choose a location close to your users and click **Next**.
+4. Select **Start in test mode** (this allows the landing page to save registration entries directly) and click **Create**.
+5. The setup is fully complete! Registration form submissions will now automatically write to a Cloud Firestore collection called `registrations`.
