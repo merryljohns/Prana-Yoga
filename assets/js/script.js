@@ -248,36 +248,38 @@ async function loadYogaClasses() {
             }
 
             htmlCards += `
-                <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll delay-${(index % 3) * 100}">
-                    <div class="class-card">
-                        <div class="class-card-body">
+                <div class="col-lg-4 col-md-6 mb-5 animate-on-scroll delay-${(index % 3) * 100}">
+                    <div class="class-card-wrapper">
+                        <div class="class-card">
                             <span class="class-badge">${cls.type} Webinar</span>
-                            <h4 class="card-title mb-2">${cls.title}</h4>
-                            <p class="text-muted small mb-3">${cls.subtitle}</p>
-                            <p class="card-text text-dark flex-grow-1" style="font-size: 0.92rem; line-height: 1.6;">
-                                ${cls.description}
-                            </p>
-                            <div class="class-meta">
-                                <div class="class-meta-item">
-                                    <i class="bi bi-calendar3"></i>
-                                    <span><strong>Date:</strong> ${formattedDate}</span>
+                            <div class="class-card-body">
+                                <h4 class="card-title mb-2 mt-2">${cls.title}</h4>
+                                <p class="text-muted small mb-3">${cls.subtitle}</p>
+                                <p class="card-text text-dark flex-grow-1" style="font-size: 0.92rem; line-height: 1.6; margin-bottom: 20px;">
+                                    ${cls.description}
+                                </p>
+                                <div class="class-meta mb-3">
+                                    <div class="class-meta-item">
+                                        <i class="bi bi-calendar3"></i>
+                                        <span><strong>Date:</strong> ${formattedDate}</span>
+                                    </div>
+                                    <div class="class-meta-item">
+                                        <i class="bi bi-clock"></i>
+                                        <span><strong>Time:</strong> ${cls.start_time} - ${cls.end_time}</span>
+                                    </div>
+                                    ${cls.place && cls.place !== 'NULL' && cls.place !== 'null' ? `
+                                    <div class="class-meta-item">
+                                        <i class="bi bi-geo-alt"></i>
+                                        <span><strong>Location:</strong> ${cls.place}</span>
+                                    </div>` : ''}
                                 </div>
-                                <div class="class-meta-item">
-                                    <i class="bi bi-clock"></i>
-                                    <span><strong>Time:</strong> ${cls.start_time} - ${cls.end_time}</span>
+                                <div class="d-flex align-items-center justify-content-between mt-4">
+                                    <button type="button" class="btn btn-premium btn-sm" onclick="selectAndScrollToClass('${cls.id}')">
+                                        Book Spot <i class="bi bi-arrow-right-short"></i>
+                                    </button>
                                 </div>
-                                ${cls.place && cls.place !== 'NULL' && cls.place !== 'null' ? `
-                                <div class="class-meta-item">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <span><strong>Location:</strong> ${cls.place}</span>
-                                </div>` : ''}
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mt-4">
-                                <div class="class-price">$${cls.amount}</div>
-                                <button type="button" class="btn btn-premium btn-sm" onclick="selectAndScrollToClass('${cls.id}')">
-                                    Book Spot <i class="bi bi-arrow-right-short"></i>
-                                </button>
-                            </div>
+                            <div class="class-price-badge">$${cls.amount}</div>
                         </div>
                     </div>
                 </div>

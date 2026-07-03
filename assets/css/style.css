@@ -193,50 +193,110 @@ h1, h2, h3, h4, h5, h6, .display-font {
     border: none;
 }
 
-/* Classes Section & Cards */
+/* Classes Section & Overlapping Cards Layout */
+.class-card-wrapper {
+    position: relative;
+    padding-bottom: 16px;
+    padding-right: 16px;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Offset decorative card background to build overlapping depth */
+.class-card-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(26, 77, 67, 0.03);
+    border: 2px dashed rgba(26, 77, 67, 0.12);
+    border-radius: 24px;
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .class-card {
     background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition-smooth);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 2;
+    overflow: visible !important; /* allow overlapping badges to show */
 }
 
-.class-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--hover-shadow);
-    border-color: rgba(26, 77, 67, 0.15);
+/* Parallax split animation: card moves up-left, offset layer moves down-right */
+.class-card-wrapper:hover {
+    transform: translate(-6px, -6px);
+}
+
+.class-card-wrapper:hover::before {
+    transform: translate(12px, 12px);
+    background-color: rgba(229, 154, 93, 0.06);
+    border-color: rgba(229, 154, 93, 0.25);
+}
+
+.class-card-wrapper:hover .class-card {
+    box-shadow: 0 25px 50px rgba(26, 77, 67, 0.06);
+    border-color: rgba(26, 77, 67, 0.12);
 }
 
 .class-card-body {
-    padding: 30px;
+    padding: 35px 30px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
+/* Overlapping absolute category badge */
 .class-badge {
-    background-color: rgba(229, 154, 93, 0.1);
-    color: var(--secondary-color);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 6px 12px;
+    position: absolute;
+    top: -14px;
+    left: 28px;
+    z-index: 5;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 6px 16px;
     border-radius: 50px;
     width: fit-content;
-    margin-bottom: 15px;
+    margin-bottom: 0;
+    box-shadow: 0 4px 10px rgba(26, 77, 67, 0.15);
+    transition: background-color 0.4s ease;
 }
 
-.class-price {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
+.class-card-wrapper:hover .class-badge {
+    background-color: var(--secondary-color);
+}
+
+/* Overlapping absolute price tag */
+.class-price-badge {
+    position: absolute;
+    bottom: -12px;
+    right: 28px;
+    z-index: 5;
+    background-color: var(--secondary-color);
+    color: #ffffff;
     font-family: var(--font-heading);
-    margin-top: auto;
-    padding-top: 20px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 6px 18px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(229, 154, 93, 0.3);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.class-card-wrapper:hover .class-price-badge {
+    transform: scale(1.1) rotate(-3deg);
 }
 
 .class-meta {
@@ -257,6 +317,41 @@ h1, h2, h3, h4, h5, h6, .display-font {
 .class-meta-item i {
     color: var(--primary-light);
     width: 16px;
+}
+
+/* Staggered overlapping column offsets on desktop */
+@media (min-width: 992px) {
+    .classListingRow {
+        padding-top: 30px;
+        padding-bottom: 40px;
+    }
+    
+    .classListingRow > div:nth-child(1) {
+        transform: translateY(-20px);
+    }
+    
+    .classListingRow > div:nth-child(2) {
+        transform: translateY(20px);
+    }
+    
+    .classListingRow > div:nth-child(3) {
+        transform: translateY(-10px);
+    }
+    
+    .classListingRow > div {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.6s ease;
+        position: relative;
+        z-index: 5;
+    }
+    
+    .classListingRow > div:hover {
+        z-index: 10;
+        transform: translateY(-28px) scale(1.02) !important;
+    }
+    
+    .classListingRow > div:nth-child(2):hover {
+        transform: translateY(12px) scale(1.02) !important;
+    }
 }
 
 /* Testimonial Section */
