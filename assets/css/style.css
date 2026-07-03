@@ -38,8 +38,15 @@ h1, h2, h3, h4, h5, h6, .display-font {
 .navbar {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    transition: var(--transition-smooth);
+    transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.2rem 0; /* default taller padding */
+}
+
+.navbar.navbar-scrolled {
+    padding: 0.6rem 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-brand {
@@ -200,9 +207,9 @@ h1, h2, h3, h4, h5, h6, .display-font {
 }
 
 .class-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px) scale(1.02);
     box-shadow: var(--hover-shadow);
-    border-color: rgba(26, 77, 67, 0.1);
+    border-color: rgba(26, 77, 67, 0.15);
 }
 
 .class-card-body {
@@ -562,13 +569,14 @@ footer a:hover {
     background-color: #ffffff;
     box-shadow: var(--card-shadow);
     border: 1px solid rgba(0,0,0,0.03);
-    transition: var(--transition-smooth);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     height: 100%;
 }
 
 .benefit-card:hover {
     box-shadow: var(--hover-shadow);
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(26, 77, 67, 0.1);
 }
 
 .benefit-icon {
@@ -620,3 +628,38 @@ footer a:hover {
         margin-top: 30px;
     }
 }
+
+/* Scroll Triggered Reveal Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Reveal Directions */
+.reveal-left {
+    transform: translateX(-45px);
+}
+.reveal-right {
+    transform: translateX(45px);
+}
+.reveal-fade {
+    transform: translateY(0) scale(0.95);
+}
+
+.reveal-left.animated, .reveal-right.animated, .reveal-fade.animated {
+    transform: translate(0) scale(1);
+}
+
+/* Animation Staggering Delays */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }

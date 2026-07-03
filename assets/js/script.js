@@ -11,12 +11,93 @@ document.addEventListener("DOMContentLoaded", () => {
     loadYogaClasses();
     loadTestimonials();
 
+    // Setup navbar scrolled states and scrollspy
+    initScrollEffects();
+
+    // Initialize Scroll Reveal for static elements
+    initScrollReveal();
+
     // Event listener for form submission
     const registrationForm = document.getElementById("webinarRegisterForm");
     if (registrationForm) {
         registrationForm.addEventListener("submit", handleRegistrationSubmit);
     }
 });
+
+/**
+ * Manages scroll-responsive navbar shrinking and scrollspy active links.
+ */
+function initScrollEffects() {
+    const navbar = document.querySelector(".navbar");
+    const sections = document.querySelectorAll("header, section, footer");
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    // Scroll handler for navbar background & height
+    const handleScroll = () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("navbar-scrolled");
+        } else {
+            navbar.classList.remove("navbar-scrolled");
+        }
+
+        // Scrollspy link active updates
+        let currentSectionId = "home";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            // Highlight a bit before the section comes in
+            if (window.scrollY >= (sectionTop - 180)) {
+                const id = section.getAttribute("id");
+                if (id) currentSectionId = id;
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${currentSectionId}`) {
+                link.classList.add("active");
+            }
+        });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Trigger initially in case page loaded scrolled down
+}
+
+/**
+ * Initializes IntersectionObserver to trigger viewport entrance animations.
+ */
+let scrollObserver = null;
+function initScrollReveal() {
+    // Clean up previous observer if exists
+    if (scrollObserver) {
+        scrollObserver.disconnect();
+    }
+
+    const animatedElements = document.querySelectorAll(".animate-on-scroll");
+
+    scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("animated");
+                // Stop observing once animated
+                scrollObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.08, // trigger when 8% is visible
+        rootMargin: "0px 0px -40px 0px"
+    });
+
+    animatedElements.forEach(el => scrollObserver.observe(el));
+}
+
+/**
+ * Public helper to re-observe newly loaded API content.
+ */
+window.refreshScrollReveal = function() {
+    initScrollReveal();
+};
 
 /**
  * Extracts YouTube video ID and returns a clean embed URL.
@@ -82,6 +163,8 @@ async function loadHeroBanners() {
             }, 5000);
         }
 
+        window.refreshScrollReveal();
+
     } catch (err) {
         console.error("Error loading banners:", err);
     }
@@ -116,6 +199,8 @@ async function loadIntroVideo() {
             </div>
         `;
 
+        window.refreshScrollReveal();
+
     } catch (err) {
         console.error("Error loading video:", err);
     }
@@ -145,7 +230,7 @@ async function loadYogaClasses() {
         let htmlCards = "";
         let dropdownOptions = `<option value="" disabled selected>Choose a Yoga Class...</option>`;
 
-        classes.forEach(cls => {
+        classes.forEach((cls, index) => {
             // Format dynamic date
             let formattedDate = cls.date;
             try {
@@ -163,7 +248,7 @@ async function loadYogaClasses() {
             }
 
             htmlCards += `
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll delay-${(index % 3) * 100}">
                     <div class="class-card">
                         <div class="class-card-body">
                             <span class="class-badge">${cls.type} Webinar</span>
@@ -208,6 +293,8 @@ async function loadYogaClasses() {
         if (classSelect) {
             classSelect.innerHTML = dropdownOptions;
         }
+
+        window.refreshScrollReveal();
 
     } catch (err) {
         console.error("Error loading classes:", err);
@@ -300,6 +387,8 @@ async function loadTestimonials() {
             dotsContainer.innerHTML = htmlDots;
             setupTestimonialSlider(testimonials.length);
         }
+
+        window.refreshScrollReveal();
 
     } catch (err) {
         console.error("Error loading testimonials:", err);
