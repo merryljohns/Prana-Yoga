@@ -6,12 +6,13 @@
 
 // REPLACE this configuration with your Firebase project credentials:
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyCJlKvRa2MiKesm61YMSgwPhyCtB61G1Yk",
+    authDomain: "sample-46553.firebaseapp.com",
+    projectId: "sample-46553",
+    storageBucket: "sample-46553.firebasestorage.app",
+    messagingSenderId: "1010808035540",
+    appId: "1:1010808035540:web:101699c3a9495a6c13c341",
+    measurementId: "G-67HNL379VD"
 };
 
 let db = null;
