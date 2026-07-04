@@ -507,6 +507,7 @@ function setupTestimonialSlider(totalSlides) {
 async function handleRegistrationSubmit(event) {
     event.preventDefault();
 
+    const registrationForm = document.getElementById("webinarRegisterForm");
     const nameInput = document.getElementById("regName");
     const emailInput = document.getElementById("regEmail");
     const phoneInput = document.getElementById("regPhone");
@@ -548,8 +549,13 @@ async function handleRegistrationSubmit(event) {
             const selectedOption = classSelect.options[classSelect.selectedIndex];
             const classTitle = selectedOption ? selectedOption.text : "Yoga Class";
 
-            // Trigger success UI modal
-            showSuccessModal(name, email, classTitle);
+            try {
+                // Trigger success UI modal
+                showSuccessModal(name, email, classTitle);
+            } catch (modalError) {
+                console.warn("Success modal could not be shown:", modalError);
+                showToast("Registration successful! Please check your inbox for details.", "success");
+            }
             
             // Clear form fields
             registrationForm.reset();
@@ -586,6 +592,10 @@ function validatePhone(phone) {
  * Instantiates and opens a premium Success Modal.
  */
 function showSuccessModal(name, email, classTitle) {
+    if (typeof window.bootstrap === "undefined" || typeof window.bootstrap.Modal !== "function") {
+        throw new Error("Bootstrap modal is not available.");
+    }
+
     // Create element or select existing modal
     let modalElement = document.getElementById("registrationSuccessModal");
     
