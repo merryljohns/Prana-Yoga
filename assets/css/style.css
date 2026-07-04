@@ -193,6 +193,44 @@ h1, h2, h3, h4, h5, h6, .display-font {
     border: none;
 }
 
+/* YouTube Thumbnail + Play Button Overlay */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.video-thumbnail-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 24px;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.video-thumbnail-container:hover .video-thumbnail-img {
+    transform: scale(1.03);
+    filter: brightness(0.75);
+}
+
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    opacity: 0.9;
+    z-index: 3;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.4));
+}
+
+.video-thumbnail-container:hover .video-play-btn {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 1;
+}
+
 /* Classes Section & Overlapping Cards Layout */
 .class-card-wrapper {
     position: relative;

@@ -171,7 +171,28 @@ async function loadHeroBanners() {
 }
 
 /**
- * Loads video list and embeds the first available video into the video section.
+ * Extracts the YouTube video ID from any standard YouTube URL format.
+ * @param {string} url
+ * @returns {string|null}
+ */
+function getYouTubeVideoId(url) {
+    try {
+        if (url.includes("youtube.com/watch")) {
+            return new URLSearchParams(new URL(url).search).get("v");
+        } else if (url.includes("youtu.be/")) {
+            return url.split("youtu.be/")[1].split(/[?#]/)[0];
+        } else if (url.includes("youtube.com/embed/")) {
+            return url.split("youtube.com/embed/")[1].split(/[?#]/)[0];
+        }
+    } catch (e) { /* ignore */ }
+    return null;
+}
+
+/**
+ * Loads video list and renders a clickable YouTube thumbnail with play overlay.
+ * The thumbnail image always loads (even for embed-restricted videos).
+ * Clicking it will attempt to embed the iframe; if the video is restricted
+ * it also provides a direct YouTube link.
  */
 async function loadIntroVideo() {
     const videoSection = document.getElementById("webinarVideoContainer");
@@ -187,14 +208,31 @@ async function loadIntroVideo() {
             return;
         }
 
-        // Convert watch link to embed link
         const rawLink = videos[0].link;
-        const embedLink = getYouTubeEmbedUrl(rawLink);
+        const videoId = getYouTubeVideoId(rawLink);
+
+        if (!videoId) {
+            videoSection.innerHTML = `<div class="alert alert-warning text-center">Invalid video link received from server.</div>`;
+            return;
+        }
+
+        // YouTube always serves thumbnail images regardless of embed restrictions
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        const thumbnailFallback = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
         videoSection.innerHTML = `
-            <div class="video-wrapper">
-                <div class="video-container">
-                    <iframe src="${embedLink}" title="Yoga Webinar Intro Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="video-wrapper" id="videoPlayerWrapper">
+                <div class="video-thumbnail-container" id="videoThumbnailContainer" onclick="activateVideoPlayer('${videoId}', '${rawLink}')" role="button" aria-label="Play video" tabindex="0">
+                    <img src="${thumbnailUrl}" 
+                         onerror="this.src='${thumbnailFallback}'" 
+                         alt="Yoga Webinar Video Preview" 
+                         class="video-thumbnail-img">
+                    <div class="video-play-btn">
+                        <svg viewBox="0 0 68 48" width="68" height="48">
+                            <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#FF0000"/>
+                            <path d="M45 24L27 14v20" fill="#fff"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
         `;
@@ -205,6 +243,31 @@ async function loadIntroVideo() {
         console.error("Error loading video:", err);
     }
 }
+
+/**
+ * Activates the video player: replaces the thumbnail with an embedded iframe.
+ * If embedding fails (restricted video), shows a direct YouTube link.
+ */
+window.activateVideoPlayer = function(videoId, rawLink) {
+    const wrapper = document.getElementById("videoPlayerWrapper");
+    if (!wrapper) return;
+
+    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+
+    wrapper.innerHTML = `
+        <div class="video-container">
+            <iframe src="${embedUrl}" 
+                    id="ytEmbedFrame"
+                    title="Yoga Webinar Intro Video" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        </div>
+        <div class="video-overlay-footer d-flex justify-content-between align-items-center bg-dark text-white p-3 small" style="border-radius: 0 0 24px 24px; margin-top: -6px; position: relative; z-index: 5;">
+            <span><i class="bi bi-play-circle-fill me-2 text-success"></i>Now Playing</span>
+            <a href="${rawLink}" target="_blank" class="btn btn-outline-light btn-sm text-decoration-none" style="font-size: 0.8rem;"><i class="bi bi-box-arrow-up-right me-1"></i>Open on YouTube</a>
+        </div>
+    `;
+};
 
 /**
  * Loads and renders Yoga class cards.
