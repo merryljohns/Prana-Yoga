@@ -285,25 +285,29 @@
                             <form id="webinarRegisterForm" novalidate>
                                 
                                 <div class="mb-3">
-                                    <label for="regName" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="regName" placeholder="Enter your full name" required>
+                                    <label for="regName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="regName" placeholder="Enter your full name" required minlength="3" maxlength="60" autocomplete="name">
+                                    <div class="field-error" id="regNameError"></div>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="regEmail" class="form-label">Email Address</label>
-                                    <input type="email" class="form-control" id="regEmail" placeholder="name@domain.com" required>
+                                    <label for="regEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="regEmail" placeholder="name@domain.com" required maxlength="100" autocomplete="email">
+                                    <div class="field-error" id="regEmailError"></div>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="regPhone" class="form-label">Phone Number (10 digits)</label>
-                                    <input type="tel" class="form-control" id="regPhone" placeholder="9876543210" required>
+                                    <label for="regPhone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="regPhone" placeholder="9876543210" required maxlength="10" pattern="[0-9]{10}" autocomplete="tel">
+                                    <div class="field-error" id="regPhoneError"></div>
                                 </div>
                                 
                                 <div class="mb-4">
-                                    <label for="regClassSelect" class="form-label">Select Yoga Class</label>
+                                    <label for="regClassSelect" class="form-label">Select Yoga Class <span class="text-danger">*</span></label>
                                     <select class="form-select" id="regClassSelect" required>
                                         <option value="" disabled selected>Loading active classes...</option>
                                     </select>
+                                    <div class="field-error" id="regClassError"></div>
                                 </div>
                                 
                                 <button type="submit" class="btn btn-accent w-100 py-3 text-uppercase" id="regSubmitBtn">
